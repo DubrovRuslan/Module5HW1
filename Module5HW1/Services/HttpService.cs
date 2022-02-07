@@ -10,6 +10,12 @@ namespace Module5HW1.Services
     public class HttpService : IHttpService
     {
         private readonly HttpClient _httpClient = new HttpClient();
+        private ILoggerService _loggerService;
+
+        public HttpService(ILoggerService loggerService)
+        {
+            _loggerService = loggerService;
+        }
 
         public async Task SendAsync<T>(Uri uri, HttpMethod httpMethod, StringContent? httpContent = null)
         {
@@ -22,7 +28,7 @@ namespace Module5HW1.Services
                 var result = await _httpClient.SendAsync(httpMessage);
                 if (!result.IsSuccessStatusCode)
                 {
-                    Console.WriteLine($"Request Status Code: {result.StatusCode}");
+                    await _loggerService.LogWarningAsync($"Request Status Code: {result.StatusCode}");
                 }
                 else
                 {
@@ -30,18 +36,20 @@ namespace Module5HW1.Services
                     var response = JsonConvert.DeserializeObject<T>(content);
                     if (response == null)
                     {
-                        Console.WriteLine("Not response");
+                        await _loggerService.LogInfoAsync("Not response");
                     }
                     else
                     {
-                        Console.WriteLine(response);
+                        if (response is not null)
+                        {
+                            await _loggerService.LogInfoAsync(response.ToString() !);
+                        }
                     }
                 }
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
+                await _loggerService.LogErrorAsync($"nException Message :{e.Message} ");
             }
         }
     }

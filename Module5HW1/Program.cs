@@ -9,6 +9,8 @@ var serviceProvider = new ServiceCollection()
                 .AddTransient<IResourceService, ResourceService>()
                 .AddTransient<IAuthService, AuthService>()
                 .AddTransient<IConfigService, ConfigService>()
+                .AddTransient<IConsoleNotificator, ConsoleNotificator>()
+                .AddTransient<ILoggerService, LoggerService>()
                 .AddTransient<Starter>()
                 .BuildServiceProvider();
 
