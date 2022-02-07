@@ -1,0 +1,5 @@
+{
+  "ListResource": "/api/unknown",
+  "SingleResource": "/api/unknown/2",
+  "SingleResourceNotFound": "/api/unknown/23"
+}

@@ -1,0 +1,4 @@
+{
+  "Register": "/api/register",
+  "Login": "/api/users?page=2"
+}
