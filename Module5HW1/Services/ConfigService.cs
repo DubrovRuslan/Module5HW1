@@ -9,11 +9,16 @@ namespace Module5HW1.Services
 {
     public class ConfigService : IConfigService
     {
+        private readonly string _configPath = @"Configs/Config.json";
+        private readonly string _usersRequestsPath = @"Configs/UsersRequests.json";
+        private readonly string _resourceRequestsPath = @"Configs/ResourceRequests.json";
+        private readonly string _authRequestsPath = @"Configs/AuthRequests.json";
+
         public async Task<HttpServiceConfig> GetHttpServiceConfig()
         {
             try
             {
-                var configFile = await File.ReadAllTextAsync("Configs/Config.json");
+                var configFile = await File.ReadAllTextAsync(_configPath);
                 var config = JsonConvert.DeserializeObject<HttpServiceConfig>(configFile);
                 return config!;
             }
@@ -29,7 +34,7 @@ namespace Module5HW1.Services
         {
             try
             {
-                var configFile = await File.ReadAllTextAsync("Configs/UsersRequests.json");
+                var configFile = await File.ReadAllTextAsync(_usersRequestsPath);
                 var config = JsonConvert.DeserializeObject<UserServiceReguest>(configFile);
                 return config!;
             }
@@ -45,7 +50,7 @@ namespace Module5HW1.Services
         {
             try
             {
-                var configFile = await File.ReadAllTextAsync("Configs/ResourceRequests.json");
+                var configFile = await File.ReadAllTextAsync(_resourceRequestsPath);
                 var config = JsonConvert.DeserializeObject<ResourceServiceReguest>(configFile);
                 return config!;
             }
@@ -61,7 +66,7 @@ namespace Module5HW1.Services
         {
             try
             {
-                var configFile = await File.ReadAllTextAsync("Configs/AuthRequests.json");
+                var configFile = await File.ReadAllTextAsync(_authRequestsPath);
                 var config = JsonConvert.DeserializeObject<AuthServiceReguest>(configFile);
                 return config!;
             }

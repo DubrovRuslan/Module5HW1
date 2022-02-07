@@ -47,26 +47,26 @@ namespace Module5HW1.Services
             await _httpService.SendAsync<NullResponse>(uri, HttpMethod.Get);
         }
 
-        public async Task PostCreateUser()
+        public async Task PostCreateUser(string name, string job)
         {
             var uri = new Uri($@"{_url}{_reguests.Create}");
-            var user = new UserRequest { Name = "morpheus", Job = "leader" };
+            var user = new UserRequest { Name = name, Job = job };
             var httpContent = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8);
             await _httpService.SendAsync<CreateResponse>(uri, HttpMethod.Post, httpContent);
         }
 
-        public async Task PutUpdateUser()
+        public async Task PutUpdateUser(string name, string job)
         {
             var uri = new Uri($@"{_url}{_reguests.Update}");
-            var user = new UserRequest { Name = "morpheus", Job = "zion resident" };
+            var user = new UserRequest { Name = name, Job = job };
             var httpContent = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8);
             await _httpService.SendAsync<UpdateResponse>(uri, HttpMethod.Put, httpContent);
         }
 
-        public async Task PatchUpdateUser()
+        public async Task PatchUpdateUser(string name, string job)
         {
             var uri = new Uri($@"{_url}{_reguests.Update}");
-            var user = new UserRequest { Name = "morpheus", Job = "zion resident" };
+            var user = new UserRequest { Name = name, Job = job };
             var httpContent = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8);
             await _httpService.SendAsync<UpdateResponse>(uri, HttpMethod.Patch, httpContent);
         }

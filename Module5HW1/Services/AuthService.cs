@@ -22,34 +22,34 @@ namespace Module5HW1.Services
             _reguests = configService.GetAuthServiceConfig().Result;
         }
 
-        public async Task RegisterSuccessful()
+        public async Task RegisterSuccessful(string email, string password)
         {
             var uri = new Uri($@"{_url}{_reguests.Register}");
-            var login = new LoginlRequest { Email = "eve.holt@reqres.in", Password = "pistol" };
+            var login = new LoginlRequest { Email = email, Password = password };
             var httpContent = new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8);
             await _httpService.SendAsync<RegisterSuccessfulResponse>(uri, HttpMethod.Post, httpContent);
         }
 
-        public async Task RegisterUnSuccessful()
+        public async Task RegisterUnSuccessful(string email, string? password = null)
         {
             var uri = new Uri($@"{_url}{_reguests.Register}");
-            var login = new LoginlRequest { Email = "sydney@fife", Password = null };
+            var login = new LoginlRequest { Email = email, Password = password };
             var httpContent = new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8);
             await _httpService.SendAsync<RegisterUnsuccessfulResponse>(uri, HttpMethod.Post, httpContent);
         }
 
-        public async Task LoginSuccessful()
+        public async Task LoginSuccessful(string email, string password)
         {
             var uri = new Uri($@"{_url}{_reguests.Login}");
-            var login = new LoginlRequest { Email = "eve.holt@reqres.in", Password = "cityslicka" };
+            var login = new LoginlRequest { Email = email, Password = password };
             var httpContent = new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8);
             await _httpService.SendAsync<LoginSuccessfulResponse>(uri, HttpMethod.Post, httpContent);
         }
 
-        public async Task LoginUnsuccessful()
+        public async Task LoginUnsuccessful(string email, string? password)
         {
             var uri = new Uri($@"{_url}{_reguests.Login}");
-            var login = new LoginlRequest { Email = "peter@klaven", Password = null };
+            var login = new LoginlRequest { Email = email, Password = password };
             var httpContent = new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8);
             await _httpService.SendAsync<LoginUnsuccessfulResponse>(uri, HttpMethod.Post, httpContent);
         }

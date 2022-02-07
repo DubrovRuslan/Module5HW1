@@ -8,9 +8,9 @@ namespace Module5HW1.Services.Abstractions
         public Task GetListUsers();
         public Task GetSingleUser();
         public Task GetSingleUserNotFound();
-        public Task PostCreateUser();
-        public Task PutUpdateUser();
-        public Task PatchUpdateUser();
+        public Task PostCreateUser(string name, string job);
+        public Task PutUpdateUser(string name, string job);
+        public Task PatchUpdateUser(string name, string job);
         public Task DeleteUser();
         public Task GetDelayedListUsers();
     }
