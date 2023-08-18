@@ -1,0 +1,8 @@
+{
+  "ListUsers": "/api/users?page=2",
+  "SingleUser": "/api/users/2",
+  "SingleUserNotFound": "/api/users/23",
+  "Create": "/api/users",
+  "Update": "/api/users/2",
+  "DelayedResponse": "/api/users?delay=3"
+}
